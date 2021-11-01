@@ -1,3 +1,82 @@
 .App {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  margin: 15px;
+  height: 95vh;
+  position: relative;
+}
+
+.App .header{
+  width: 100%;
+  background-color: #1E376D;
+  height: 40px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.App .cells{
+  display: grid;
+  grid-template-columns: 18% 56% 24%;
+  grid-gap: 1%;
+  margin: 15px 0;
+  height: 100%;
+}
+
+.App .cells .first-col{
+  display: grid;
+  grid-template-rows: 10% 88%;
+  grid-template-columns: 99%;
+  grid-row-gap: 2%;
+}
+
+.App .cells .scnd-col{
+  display: grid;
+  grid-template-columns: 32% 32% 32%;
+  grid-template-rows: 10% 10% 79%;
+  grid-column-gap: 2%;
+  grid-row-gap: 2%;
+}
+
+.App .cells .third-col{
+  display: grid;
+  grid-template-columns: 99%;
+  grid-template-rows: 100%;
+  grid-column-gap: 1%;
+}
+
+.App .cells .cell div p{
+  font-size: 1.8vw;
+  margin: 0;
+}
+
+.App .cells .cell div p:first-child{
+  font-size: 0.9vw;
+  margin-top: 5px;
+}
+
+.App .cells .cell{
+  background-color: #222;
+  border: 1px #444 solid;
+  width: 100%;
+  height: 100%;
+  color: white;
+  position: relative;
+}
+
+.App .cells .cell .third-col-body .loadings{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.App .cells .cell .third-col-body .loadings .img-container{
+  width: 100%;
+}
+
+.App .cells .cell .third-col-body .loadings .img-container .img{
+  width: 90%;
 }
