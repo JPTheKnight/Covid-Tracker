@@ -5,6 +5,7 @@
   margin: 15px;
   height: 95vh;
   position: relative;
+  user-select: none;
 }
 
 .App .header{
@@ -33,11 +34,26 @@
 }
 
 .App .cells .scnd-col{
+  display: flex;
+  flex-direction: column;
+  margin-top: -15px;
+}
+
+.App .cells .scnd-col .cells{
   display: grid;
   grid-template-columns: 32% 32% 32%;
-  grid-template-rows: 10% 10% 79%;
+  grid-template-rows: 50% 50%;
   grid-column-gap: 2%;
   grid-row-gap: 2%;
+  flex: 1;
+}
+
+.App .cells .scnd-col .scnd-col-scnd-row{
+  background-color: #222;
+  border: 1px #444 solid;
+  width: 100%;
+  height: 100%;
+  flex: 5;
 }
 
 .App .cells .third-col{
@@ -63,7 +79,7 @@
   width: 100%;
   height: 100%;
   color: white;
-  position: relative;
+  min-height: 60px;
 }
 
 .App .cells .cell .third-col-body .loadings{
@@ -79,4 +95,50 @@
 
 .App .cells .cell .third-col-body .loadings .img-container .img{
   width: 90%;
+}
+
+.App .cells .cell .data-container{
+  margin-top: 20px;
+  height: 60vh;
+  overflow-y: scroll;
+  position: relative;
+  text-align: left;
+  padding-left: 10px;
+}
+
+.App .cells .cell .data-container .data .state{
+  font-size: 1.2rem;
+}
+
+.App .cells .cell .data-container .data .cases,
+.App .cells .cell .data-container .data .deaths,
+.App .cells .cell .data-container .data .vaccines
+{
+  font-size: 0.9rem;
+}
+
+.App .cells .cell .data-container .data .cases{
+  color: red;
+}
+
+.App .cells .cell .data-container::-webkit-scrollbar {
+  display: block;
+  width: 15px;
+}
+.App .cells .cell .data-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+  
+.App .cells .cell .data-container::-webkit-scrollbar-thumb {
+  background-color: gray;
+  border-right: none;
+  border-left: none;
+}
+
+.App .cells .cell .data-container::-webkit-scrollbar-track-piece:end {
+  background: transparent;
+}
+
+.App .cells .cell .data-container::-webkit-scrollbar-track-piece:start {
+  background: transparent;
 }

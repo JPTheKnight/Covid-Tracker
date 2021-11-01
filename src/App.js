@@ -6,6 +6,9 @@ import { useEffect, useState } from 'react';
 
 import loadingIcon from '../src/Images/Spinner.svg';
 
+import MapChart from './Map/MapChart';
+import ReactTooltip from "react-tooltip";
+
 function App() {
 
   const [apiData, setApiData] = useState([]);
@@ -21,6 +24,8 @@ function App() {
   const [vaccines, setVaccines] = useState(0);
   const [newCases, setNewCases] = useState(0);
   const [newDeaths, setNewDeaths] = useState(0);
+
+  const [content, setContent] = useState("Lebanon - 4M");
 
   if (loading)
   {
@@ -246,8 +251,18 @@ function App() {
     }
   }, [apiData]);
 
+  useEffect(() => {
+    for (let i = 0; i < apiData.length; i++) {
+      if (content === apiData[i].state)
+      {
+        setContent(content + ' - New C: ' + apiData[i].newCases + ' New D: ' + apiData[i].newDeaths);
+      }     
+    }
+  }, [content])
+
   return (
     <div class="App">
+      <ReactTooltip>{content}</ReactTooltip>
       <div class='header'>
         Holy shit
       </div>
@@ -264,44 +279,61 @@ function App() {
               <p>Cases | Deaths by</p>
               <p>States</p>
             </div>
+            <div class='data-container'>
+              {
+                apiData?.map((el, i) => {
+                  return <div class='data'> 
+                    <div class='state'>{el.state}</div>
+                    <div class='cases'>CASES: {el.actuals.newCases} | DEATHS: {el.actuals.newDeaths}</div>
+                    <div class='vaccines'>TOTAL VACCINES: {el.actuals.vaccinationsCompleted}</div>
+                    <hr/>
+                  </div>
+                })
+              }
+            </div>
           </div>
         </div>
-        <div class='scnd-col'> 
-          <div class='cell'>
-            <div>
-              <p>Total Cases</p>
-              <p>{cases}</p>
+        <div class='scnd-col'>
+          <div class='cells'>
+            <div class='cell'>
+              <div>
+                <p>Total Cases</p>
+                <p>{cases}</p>
+              </div>
+            </div>
+            <div class='cell'>
+              <div>
+                <p>Total Deaths</p>
+                <p>{deaths}</p>
+              </div>
+            </div>    
+            <div class='cell'>
+              <div>
+                <p>Total Vaccine Doses Administered</p>
+                <p>{vaccines}</p>
+              </div>
+            </div>
+            <div class='cell'>
+              <div>
+                <p>New Cases</p>
+                <p>{newCases}</p>
+              </div>
+            </div>
+            <div class='cell'>
+              <div>
+                <p>New Deaths</p>
+                <p>{newDeaths}</p>
+              </div>
+            </div>
+            <div class='cell'>
+              <div>
+                <p></p>
+                <p></p>
+              </div>
             </div>
           </div>
-          <div class='cell'>
-            <div>
-              <p>Total Deaths</p>
-              <p>{deaths}</p>
-            </div>
-          </div>    
-          <div class='cell'>
-            <div>
-              <p>Total Vaccine Doses Administered</p>
-              <p>{vaccines}</p>
-            </div>
-          </div>
-          <div class='cell'>
-            <div>
-              <p>New Cases</p>
-              <p>{newCases}</p>
-            </div>
-          </div>
-          <div class='cell'>
-            <div>
-              <p>New Deaths</p>
-              <p>{newDeaths}</p>
-            </div>
-          </div>
-          <div class='cell'>
-            <div>
-              <p></p>
-              <p></p>
-            </div>
+          <div class='scnd-col-scnd-row'>
+            <MapChart setTooltipContent={setContent} />
           </div>
         </div>
         <div class='third-col'>
