@@ -40,8 +40,6 @@ const MapChart = ({setTooltipContent}) => {
     useEffect(() => {
         if (loading)
             setLoading(false);
-
-            console.log(apiData);
     }, [loading])
 
     return (

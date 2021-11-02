@@ -140,7 +140,6 @@ function App() {
   }
 
   const getDate = () => {
-    console.log(apiData);
     var _date = new Date(apiData[0].actualsTimeseries[0].date);
 
     for (let i=0;i<apiData.length;i++)
